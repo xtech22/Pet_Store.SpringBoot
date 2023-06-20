@@ -16,25 +16,17 @@ import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.ToString;
 
-//The code defines a Java class named "PetStore" with the annotation "@Entity",
-//indicating that it is a persistent entity in a database.
 
-//The class uses the "@Data" annotation, which generates boilerplate code for
-//getters, setters, equals, hashCode, and toString methods.
-@Entity
-@Data
+@Entity 														//indicating that it is a persistent entity in a database.
+@Data															//generates boilerplate code for getters, setters, equals, hashCode, and toString methods.
 public class PetStore {
-	// The class has a private field named "petStoreId" of type Long, which represents
-	// the unique identifier for the pet store.
 	
-	// The field "petStoreId" is annotated with "@Id", indicating that it is the primary key
-	// for the entity.
 
-	// The field "petStoreId" is also annotated with "@GeneratedValue", specifying that
-	// the value of the identifier will be generated automatically.
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long petStoreId;
+	
+	@Id 														//Indicates that it is the primary key for the entity.
+	@GeneratedValue(strategy = GenerationType.IDENTITY) 		//specifying that the value of the identifier will be generated automatically.
+	private Long petStoreId; 									//represents the unique identifier for the pet store.
+	
 	
 	//These private fields represent different columns that will be
 	//added to the "pet_store" table with their respected data types.
@@ -44,11 +36,7 @@ public class PetStore {
 	private String petStoreZip;
 	private String petStorePhone;
 	
-	// The class has a field named "customers" of type Set<Customer>, representing the
-	// customers associated with the pet store.
 
-	// The field "customers" is annotated with "@ManyToMany", indicating a many-to-many
-	// relationship with the "Customer" entity.
 
 	// The annotation "@JoinTable" specifies the join table name and the columns used for
 	// joining the "PetStore" and "Customer" entities.
@@ -69,11 +57,10 @@ public class PetStore {
 	// The class has a field named "employees" of type Set<Employee>, representing the
 	// employees working at the pet store.
 	
-	// The field "employees" is annotated with "@OneToMany", indicating a one-to-many
-	// relationship with the "Employee" entity.
+	
 	@EqualsAndHashCode.Exclude
 	@ToString.Exclude
-	@OneToMany(mappedBy = "petStore", cascade = CascadeType.ALL, orphanRemoval = true)
+	@OneToMany(mappedBy = "petStore", cascade = CascadeType.ALL, orphanRemoval = true)  //indicating a one-to-many relationship with the "Employee" entity.
 	private Set<Employee> employees = new HashSet<>();
 
 }
